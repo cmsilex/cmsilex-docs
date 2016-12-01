@@ -83,7 +83,7 @@ definitions, call the ``run`` method on your application::
     // public/index.php
     require_once __DIR__.'/../vendor/autoload.php';
 
-    $app = new Silex\Application();
+    $app = new \CMSilex\Application();
 
     // ... definitions
 
@@ -119,8 +119,6 @@ Create a file ``/config/config.yml``.
     # db:
     #   driver: pdo_sqlite
     #   path: /path/to/sqlite.db
-
-
 
 Database
 --------
