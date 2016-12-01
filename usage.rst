@@ -4,9 +4,18 @@ Usage
 Installation
 ------------
 
+Create a ``composer.json`` file:
+
+.. code:: json
+
+    {
+        "minimum-stability": "dev",
+        "prefer-stable": true
+    }
+
 Use Composer_:
 
-.. code-block:: bash
+.. code:: bash
 
     composer require cmsilex/cmsilex "dev-master"
     
@@ -77,17 +86,33 @@ Bootstrap
 ---------
 
 To bootstrap CMSilex, you need to require the ``vendor/autoload.php``
-file and create an instance of ``CMSilex\Application``. After your controller
-definitions, call the ``run`` method on your application::
+file and create an instance of ``CMSilex\Application``. 
 
-    // public/index.php
-    require_once __DIR__.'/../vendor/autoload.php';
+Create a generic bootstrap file ``/bootstrap.php`` that can be used both by the webserver and CLI:
+
+.. code: php
+
+    <?php
+
+    require_once __DIR__ . "/vendor/autoload.php";
 
     $app = new \CMSilex\Application();
 
-    // ... definitions
+    // register additional services eg...
+    // $app->register(new \CMSilex\MoodTracker\MoodTracker());
+
+    return $app;
+
+
+In ``/public/index.php`` require your bootstrap file which returns your application and
+call the ``run`` method on your application::
+
+    <?php
+
+    $app = require __DIR__ . "/../bootstrap.php";
 
     $app->run();
+
 
 Config
 ------
@@ -120,6 +145,25 @@ Create a file ``/config/config.yml``.
     #   driver: pdo_sqlite
     #   path: /path/to/sqlite.db
 
+
+    
+CLI-Config
+==========
+
+In order for doctrine command line to work you need a php config file at ``/config/cli-config.php``:
+
+.. code:: php
+
+    <?php
+    use Doctrine\ORM\Tools\Console\ConsoleRunner;
+
+    // replace with file to your own project bootstrap
+    $app = require_once __DIR__ . "/../bootstrap.php";
+
+    return ConsoleRunner::createHelperSet($app['em']);
+
+    
+
 Database
 --------
 
@@ -128,3 +172,4 @@ You need to set up a database for your cms.
 .. code:: bash
 
     vendor/bin/doctrine orm:schema:create
+    
