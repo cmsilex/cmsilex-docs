@@ -12,7 +12,7 @@ Use Composer_:
     
 Create a public directory.
 
-Create a cmsilex directory inside your public directory ``/public/cmsilex`` that will store the
+Create a ``cmsilex`` directory inside your public directory eg. ``/public/cmsilex`` that will store the
 assets for the backend of cmsilex.
 
 Copy the contents of ``/vendor/cmsilex/cmsilex/resources/public`` to the new ``/public/cmsilex`` directory.
@@ -94,22 +94,39 @@ Config
 
 CMSilex uses YAML for its config file.
 
-There are two settings the config needs in order to function:
+Create a file ``/config/config.yml``.
 
 .. code:: yaml
 
+    # Turn debug on or off
+    # debug: false
+
+    # the directory within /themes where your frontend theme resides
     theme: mythemedir
+    
+    # Enable or disable the /register path to allow new user registration
+    # register: false
+    
+    # example mysql db config
     db:
       driver: pdo_mysql
       dbname: mydbname
       host: 127.0.0.1
       user: mydbuser
       password: mydbpassword
+    
+    # example sqlite db config
+    # db:
+    #   driver: pdo_sqlite
+    #   path: /path/to/sqlite.db
 
 
-  Create a file ``/config/config.yml``
 
 Database
 --------
 
 You need to set up a database for your cms.
+
+.. code:: bash
+
+    vendor/bin/doctrine orm:schema:create
