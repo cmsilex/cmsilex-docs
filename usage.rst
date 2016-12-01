@@ -13,7 +13,7 @@ Create a ``composer.json`` file:
         "prefer-stable": true
     }
 
-Use Composer_:
+Use `Composer`_:
 
 .. code:: bash
 
@@ -146,7 +146,6 @@ Create a file ``/config/config.yml``.
     #   path: /path/to/sqlite.db
 
 
-    
 CLI-Config
 ==========
 
@@ -162,7 +161,6 @@ In order for doctrine command line to work you need a php config file at ``/conf
 
     return ConsoleRunner::createHelperSet($app['em']);
 
-    
 
 Database
 --------
@@ -172,4 +170,5 @@ You need to set up a database for your cms.
 .. code:: bash
 
     vendor/bin/doctrine orm:schema:create
-    
+
+.. _Composer: https://getcomposer.org/
