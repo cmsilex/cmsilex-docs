@@ -23,14 +23,14 @@ An example nginx webserver config:
 
     server {
         listen 80;
-        server_name leighmurray.com www.leighmurray.com;
+        server_name yoursite.com www.yoursite.com;
         return 301 https://$host$request_uri;
     }
 
     server {
         listen 443 ssl;
-        server_name leighmurray.com www.leighmurray.com;
-        root /var/www/leighmurray.com/public;
+        server_name yoursite.com www.yoursite.com;
+        root /var/www/yoursite.com/public;
 
         location / {
             # try to serve file directly, fallback to front controller
@@ -59,8 +59,8 @@ An example nginx webserver config:
             return 404;
         }
 
-        ssl_certificate /etc/letsencrypt/live/leighmurray.com/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/leighmurray.com/privkey.pem;
+        ssl_certificate /etc/letsencrypt/live/yoursite.com/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/yoursite.com/privkey.pem;
 
         ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
         ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-R$
@@ -68,8 +68,8 @@ An example nginx webserver config:
         ssl_prefer_server_ciphers on;
         ssl_dhparam /etc/nginx/dhparams.pem;
 
-        error_log /var/log/nginx/leighmurray_error.log;
-        access_log /var/log/nginx/leighmurray_access.log;
+        error_log /var/log/nginx/yoursite_error.log;
+        access_log /var/log/nginx/yoursite_access.log;
     }
 
 
