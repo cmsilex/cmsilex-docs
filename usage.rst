@@ -147,7 +147,7 @@ Create a file ``/config/config.yml``.
 
 
 CLI-Config
-==========
+----------
 
 In order for doctrine command line to work you need a php config file at ``/config/cli-config.php``:
 
